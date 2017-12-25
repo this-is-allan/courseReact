@@ -6,7 +6,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            deadline: 'December 25, 2017'
+            deadline: 'December 26, 2017'
         }
     }
 
@@ -22,7 +22,9 @@ class App extends Component {
                     Countdown to {this.state.deadline}
                 </div>
 
-                <Clock />
+                <Clock
+                    deadline={this.state.deadline}
+                />
 
                 <div>
                     <input
