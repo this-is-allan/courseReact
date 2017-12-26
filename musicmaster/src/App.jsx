@@ -8,7 +8,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            query: 'Frank Sinatra',
+            query: 'Rage Against the machine',
             tracks: [],
             artist: null,
             token: 'BQA4CNgxXS2YUeUjphQ1kQzxZbFhcFCXurzS_BLanIHXbSyeBNWxdvC370dztLFoxdlWCn7iLLEWIoXMLi2wPeYSB6_ufgrBl-PvXXbNWTGsGvqtNb5-ZmWjvoPfY_JMF64y4VswvzJRZrCC5Mu3_dgsJiKZV1pA9_6t58_zO5iHcY71fsssWX_cV11ocP7k9lgeETLfMRiz4fQODiyulXMxJ73o1mJX7B9L8vn1Ev_27DH47fLAEcDBZbhZdOM9aHTJdlcCxs9E'
