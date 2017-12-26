@@ -15,7 +15,9 @@ class Profile extends Component {
                 />
                 <div className="profile-info">
                     <div className="profile-name">{artist.name}</div>
-                    <div className="profile-followers">{artist.followers.total}</div>
+                    <div className="profile-followers">
+                        {artist.followers.total} followers
+                    </div>
                     <div className="profile-genres">
                         {
                             artist.genres.map((genre, k) => {

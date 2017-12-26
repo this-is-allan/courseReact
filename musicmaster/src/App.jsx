@@ -8,8 +8,9 @@ class App extends Component {
         super(props);
         this.state = {
             query: 'Frank Sinatra',
+            tracks: [],
             artist: null,
-            token: 'BQAxJjj_BzhTm1fuOQEp2J-QE5boQtx7YgFLQyLMCA7SeJosFyVKpL4QEukM3sk06IDloAua0JbJnqkHTNiMvMbOBVCzg79MpwZigkR2ieXj1to164Kij0TEcNfXysGLQtN5C61Qpuj9oFzlXymbuOWv_LYcFI87eni3EusemuX6cfvsL3FHY2Qf2RhTj9bDaiqGLbIB6rZY5W9Mx_e59cfaJKtcg_ryG2FD3-hsKcQBx9fkB1N5kES147-VwHeX08ZCq-PCV7gA'
+            token: 'BQA4CNgxXS2YUeUjphQ1kQzxZbFhcFCXurzS_BLanIHXbSyeBNWxdvC370dztLFoxdlWCn7iLLEWIoXMLi2wPeYSB6_ufgrBl-PvXXbNWTGsGvqtNb5-ZmWjvoPfY_JMF64y4VswvzJRZrCC5Mu3_dgsJiKZV1pA9_6t58_zO5iHcY71fsssWX_cV11ocP7k9lgeETLfMRiz4fQODiyulXMxJ73o1mJX7B9L8vn1Ev_27DH47fLAEcDBZbhZdOM9aHTJdlcCxs9E'
         }
     }
 
@@ -19,6 +20,7 @@ class App extends Component {
         console.log('this.state', this.state);
         const BASE_URL = 'https://api.spotify.com/v1/search?';
         const FETCH_URL = `${BASE_URL}q=${this.state.query}&type=artist&limit=1`;
+        const ALBUM_URL = 'https://api.spotify.com/v1/artists/';
         console.log('FETCH_URL', FETCH_URL);
 
         fetch(FETCH_URL, {
@@ -32,6 +34,20 @@ class App extends Component {
             const artist = json.artists.items[0];
             console.log('artist', artist);
             this.setState({artist});
+
+            let FETCH_URL = `${ALBUM_URL}${artist.id}/top-tracks?country=US&`
+            fetch(FETCH_URL, {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + accessToken
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                console.log('artist\'s top tracks:', json);
+                const { tracks } = json;
+                this.setState({tracks});
+            })
         });
     }
     
@@ -59,13 +75,20 @@ class App extends Component {
                     </InputGroup>
                 </FormGroup>
 
-                <Profile
-                    artist={this.state.artist}
-                />
+                {
+                    this.state.artist !== null
+                    ?
+                        <div>
+                            <Profile
+                                artist={this.state.artist}
+                            />
+                            <div className="Gallery">
+                                Gallery
+                            </div>
+                        </div>
+                    : <div></div>
+                }
                 
-                <div className="Gallery">
-                    Gallery
-                </div>
             </div>
         )
     }
