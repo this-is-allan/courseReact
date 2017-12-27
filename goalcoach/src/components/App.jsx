@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { firebaseApp } from '../firebase';
 
 class App extends Component {
@@ -19,6 +20,11 @@ class App extends Component {
             </div>
         )
     }
+}
+
+function mapStateToProps(state) {
+    console.log('state', state);
+    return {}
 }
 
 export default App;
