@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import { Router, Route, browserHistory } from 'react-router';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import App from './components/App';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+
+
+ReactDOM.render(
+    <Router path="/" history={browserHistory}>
+        <Route path="/app" component={App} />
+        <Route path="/sigin" component={SignIn} />
+        <Route path="/sigup" component={SignUp} />
+    </Router>, document.getElementById('root')
+)
