@@ -19,7 +19,7 @@ firebaseApp.auth().onAuthStateChanged(user => {
 ReactDOM.render(
     <Router path="/" history={browserHistory}>
         <Route path="/app" component={App} />
-        <Route path="/sigin" component={SignIn} />
-        <Route path="/sigup" component={SignUp} />
+        <Route path="/signin" component={SignIn} />
+        <Route path="/signup" component={SignUp} />
     </Router>, document.getElementById('root')
 )
